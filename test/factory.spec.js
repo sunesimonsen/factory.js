@@ -61,4 +61,53 @@ describe('factory', function () {
             name: 'Test dog 1'
         });
     });
+
+    describe('game example', function () {
+        function Game(data) {
+            this.id = data.id;
+            this.isOver = data.isOver; 
+            this.createAt = data.createAt; 
+            this.randomSeed = data.randomSeed; 
+            this.players = data.players; 
+        }
+
+        function Player(data) {
+            this.id = data.id; 
+            this.name = data.name; 
+        }
+
+        it('can create the game', function () {
+            var playerFactory = factory(function () {
+                var id = this.sequence();
+                return new Player({
+                    id: id,
+                    name: 'Player ' + id
+                });
+            });
+
+            var gameFactory = factory(function () {
+                return new Game({
+                    id: this.sequence(),
+                    isOver: false,
+                    createAt: new Date(),
+                    randomSeed: this.randomInteger(10, 100),
+                    players: playerFactory.create(2)
+                });
+            });
+
+            var game = gameFactory();
+            expect(game.id).to.be(0);
+            expect(game.isOver).to.be(false);
+            expect(game.randomSeed).to.be.within(10, 100);
+            expect(game.players).to.have.length(2);
+            expect(game.players[0]).to.eql({
+                id: 0,
+                name: 'Player 0'
+            });
+            expect(game.players[1]).to.eql({
+                id: 1,
+                name: 'Player 1'
+            });
+        });
+    });
 });
