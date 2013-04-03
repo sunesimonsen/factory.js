@@ -17,6 +17,13 @@ describe('factory', function () {
         expect(testFactory()).to.be('Test1');
     });
 
+    it('makes available a randomInteger function to the factories', function () {
+        var testFactory = factory(function () {
+            return this.randomInteger(5);
+        });
+        expect(testFactory()).to.be.within(0, 5);
+    });
+
     it('makes available a randomString function to the factories', function () {
         var testFactory = factory(function () {
             return this.randomString(5);
