@@ -1,6 +1,6 @@
 # Factory.js
 
-A minimal test factory library
+A library for create test-data factories
 
 ## Usage
 
