@@ -17,6 +17,15 @@ describe('factory', function () {
         expect(testFactory()).to.be('Test1');
     });
 
+    it('can reset the sequence', function () {
+        var testFactory = factory(function () {
+            return 'Test' + this.sequence();
+        });
+        expect(testFactory()).to.be('Test0');
+        testFactory.reset();
+        expect(testFactory()).to.be('Test0');
+    });
+
     it('makes available a randomInteger function to the factories', function () {
         var testFactory = factory(function () {
             return this.randomInteger(5);
@@ -30,7 +39,7 @@ describe('factory', function () {
         });
         expect(testFactory()).to.have.length(5);
     });
-
+    
     it('can create multiple instance using the create method', function () {
         var testFactory = factory(function () {
             return 'Test' + this.sequence();
