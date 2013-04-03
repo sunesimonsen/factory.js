@@ -17,6 +17,13 @@ describe('factory', function () {
         expect(testFactory()).to.be('Test1');
     });
 
+    it('makes available a randomString function to the factories', function () {
+        var testFactory = factory(function () {
+            return this.randomString(5);
+        });
+        expect(testFactory()).to.have.length(5);
+    });
+
     it('can create multiple instance using the create method', function () {
         var testFactory = factory(function () {
             return 'Test' + this.sequence();
