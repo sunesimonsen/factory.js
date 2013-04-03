@@ -26,12 +26,14 @@ A library for create test-data factories
     });
 
     var gameFactory = factory(function () {
+        var players = playerFactory.create(2); 
+        players.push(playerFactory('Awesome player'));
         return new Game({
             id: this.sequence(),
             isOver: false,
             createAt: new Date(),
             randomSeed: this.randomInteger(10, 100),
-            players: playerFactory.create(2)
+            players: players
         });
     });
 
@@ -47,7 +49,8 @@ which returns:
         createdAt: Wed Apr 03 2013 21:56:16 GMT+0200 (CEST),
         randomSeed: 42,
         players: [
-            {id: 0, name:'Player 0'},
-            {id: 1, name:'Player 1'}
+            { id: 0, name: 'Player 0' },
+            { id: 1, name: 'Player 1' },
+            { id: 2, name: 'Awesome player' }
         ]
     }

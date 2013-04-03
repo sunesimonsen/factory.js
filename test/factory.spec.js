@@ -86,21 +86,24 @@ describe('factory', function () {
         }
 
         it('can create the game', function () {
-            var playerFactory = factory(function () {
+            var playerFactory = factory(function (name) {
                 var id = this.sequence();
+                name = name || 'Player ' + id; 
                 return new Player({
                     id: id,
-                    name: 'Player ' + id
+                    name: name
                 });
             });
 
             var gameFactory = factory(function () {
+                var players = playerFactory.create(2); 
+                players.push(playerFactory('Awesome player'));
                 return new Game({
                     id: this.sequence(),
                     isOver: false,
                     createAt: new Date(),
                     randomSeed: this.randomInteger(10, 100),
-                    players: playerFactory.create(2)
+                    players: players
                 });
             });
 
@@ -108,7 +111,7 @@ describe('factory', function () {
             expect(game.id).to.be(0);
             expect(game.isOver).to.be(false);
             expect(game.randomSeed).to.be.within(10, 100);
-            expect(game.players).to.have.length(2);
+            expect(game.players).to.have.length(3);
             expect(game.players[0]).to.eql({
                 id: 0,
                 name: 'Player 0'
@@ -116,6 +119,10 @@ describe('factory', function () {
             expect(game.players[1]).to.eql({
                 id: 1,
                 name: 'Player 1'
+            });
+            expect(game.players[2]).to.eql({
+                id: 2,
+                name: 'Awesome player'
             });
         });
     });
