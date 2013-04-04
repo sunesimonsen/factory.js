@@ -58,7 +58,7 @@ which returns a Game instance with the following data:
 
 ## License
 
-    Copyright 2012 Sune Simonsen
+    Copyright 2013 Sune Simonsen
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
