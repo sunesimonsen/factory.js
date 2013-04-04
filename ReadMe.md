@@ -42,19 +42,17 @@ You can now build a new game the following way:
 
     var game = gameFactory();
   
-which returns:
+which returns a Game instance with the following data:
 
-    {
-        id: 0,
-        isOver: true,
-        createdAt: Wed Apr 03 2013 21:56:16 GMT+0200 (CEST),
-        randomSeed: 42,
-        players: [
-            { id: 0, name: 'Player 0' },
-            { id: 1, name: 'Player 1' },
-            { id: 2, name: 'Awesome player' }
-        ]
-    }
+    id: 0,
+    isOver: true,
+    createdAt: Wed Apr 03 2013 21:56:16 GMT+0200 (CEST),
+    randomSeed: 42,
+    players: [
+        { id: 0, name: 'Player 0' },
+        { id: 1, name: 'Player 1' },
+        { id: 2, name: 'Awesome player' }
+    ]
 
 ## License
 
