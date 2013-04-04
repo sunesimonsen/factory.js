@@ -6,20 +6,20 @@ A library for create test-data factories
 
     function Game(data) {
         this.id = data.id;
-        this.isOver = data.isOver; 
-        this.createAt = data.createAt; 
-        this.randomSeed = data.randomSeed; 
-        this.players = data.players; 
+        this.isOver = data.isOver;
+        this.createAt = data.createAt;
+        this.randomSeed = data.randomSeed;
+        this.players = data.players;
     }
 
     function Player(data) {
-        this.id = data.id; 
-        this.name = data.name; 
+        this.id = data.id;
+        this.name = data.name;
     }
 
     var playerFactory = factory(function (name) {
         var id = this.sequence();
-        name = name || 'Player ' + id; 
+        name = name || 'Player ' + id;
         return new Player({
             id: id,
             name: name
@@ -27,13 +27,13 @@ A library for create test-data factories
     });
 
     var gameFactory = factory(function () {
-        var players = playerFactory.create(2); 
+        var players = playerFactory.create(2);
         players.push(playerFactory('Awesome player'));
         return new Game({
             id: this.sequence(),
             isOver: false,
             createAt: new Date(),
-            randomSeed: this.randomInteger(10, 100),
+            randomSeed: Math.random(),
             players: players
         });
     });
@@ -41,13 +41,13 @@ A library for create test-data factories
 You can now build a new game the following way:
 
     var game = gameFactory();
-  
+
 which returns a Game instance with the following data:
 
     id: 0,
     isOver: true,
     createdAt: Wed Apr 03 2013 21:56:16 GMT+0200 (CEST),
-    randomSeed: 42,
+    randomSeed: 0.672447538934648,
     players: [
         { id: 0, name: 'Player 0' },
         { id: 1, name: 'Player 1' },

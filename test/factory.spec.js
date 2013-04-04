@@ -1,3 +1,4 @@
+/*global describe, it*/
 var expect = require('expect.js');
 var factory = require(__dirname + '/../lib/factory.js');
 
@@ -26,20 +27,6 @@ describe('factory', function () {
         expect(testFactory()).to.be('Test0');
     });
 
-    it('makes available a randomInteger function to the factories', function () {
-        var testFactory = factory(function () {
-            return this.randomInteger(5);
-        });
-        expect(testFactory()).to.be.within(0, 5);
-    });
-
-    it('makes available a randomString function to the factories', function () {
-        var testFactory = factory(function () {
-            return this.randomString(5);
-        });
-        expect(testFactory()).to.have.length(5);
-    });
-    
     it('can create multiple instance using the create method', function () {
         var testFactory = factory(function () {
             return 'Test' + this.sequence();
@@ -74,21 +61,21 @@ describe('factory', function () {
     describe('game example', function () {
         function Game(data) {
             this.id = data.id;
-            this.isOver = data.isOver; 
-            this.createAt = data.createAt; 
-            this.randomSeed = data.randomSeed; 
-            this.players = data.players; 
+            this.isOver = data.isOver;
+            this.createAt = data.createAt;
+            this.randomSeed = data.randomSeed;
+            this.players = data.players;
         }
 
         function Player(data) {
-            this.id = data.id; 
-            this.name = data.name; 
+            this.id = data.id;
+            this.name = data.name;
         }
 
         it('can create the game', function () {
             var playerFactory = factory(function (name) {
                 var id = this.sequence();
-                name = name || 'Player ' + id; 
+                name = name || 'Player ' + id;
                 return new Player({
                     id: id,
                     name: name
@@ -96,13 +83,13 @@ describe('factory', function () {
             });
 
             var gameFactory = factory(function () {
-                var players = playerFactory.create(2); 
+                var players = playerFactory.create(2);
                 players.push(playerFactory('Awesome player'));
                 return new Game({
                     id: this.sequence(),
                     isOver: false,
                     createAt: new Date(),
-                    randomSeed: this.randomInteger(10, 100),
+                    randomSeed: Math.random(),
                     players: players
                 });
             });
@@ -110,7 +97,6 @@ describe('factory', function () {
             var game = gameFactory();
             expect(game.id).to.be(0);
             expect(game.isOver).to.be(false);
-            expect(game.randomSeed).to.be.within(10, 100);
             expect(game.players).to.have.length(3);
             expect(game.players[0]).to.eql({
                 id: 0,
