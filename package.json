@@ -4,6 +4,9 @@
     "author": "Sune Sloth Simonsen <sune@we-knowhow.dk>",
     "dependencies": {},
     "private": true,
+    "scripts": {
+        "test": "./node_modules/.bin/mocha"
+    },
     "devDependencies": {
         "mocha": "~1.9.0",
         "expect.js": "=0.2.0"
