@@ -2,6 +2,8 @@
 
 A library for create test-data factories
 
+[![Build Status](https://travis-ci.org/sunesimonsen/factory.js.png?branch=master)](https://travis-ci.org/sunesimonsen/factory.js)
+
 ## Usage
 
     function Game(data) {
