@@ -17,11 +17,12 @@ A library for create test-data factories
         this.name = data.name; 
     }
 
-    var playerFactory = factory(function () {
+    var playerFactory = factory(function (name) {
         var id = this.sequence();
+        name = name || 'Player ' + id; 
         return new Player({
             id: id,
-            name: 'Player ' + id
+            name: name
         });
     });
 
