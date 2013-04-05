@@ -1,6 +1,6 @@
 {
     "name": "factory.js",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "author": "Sune Sloth Simonsen <sune@we-knowhow.dk>",
     "keywords": [ "factory", "test" ],
     "license": "Apache 2.0",
@@ -12,10 +12,11 @@
     "contributors": [
       "Gert Sønderby github.com/gertsonderby"
     ],
-    "dependencies": {},
     "scripts": {
         "test": "./node_modules/.bin/mocha"
     },
+    "main": "./lib/factory.js",
+    "dependencies": {},
     "devDependencies": {
         "mocha": "~1.9.0",
         "expect.js": "=0.2.0"
