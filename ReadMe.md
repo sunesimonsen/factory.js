@@ -85,8 +85,9 @@ You can create multiple instances using the create method on the factory:
 
     var persons = personFactory.create(2);
 
-<tt>person[0]</tt> will be named <i>Person0</i> and <tt>person[1]</tt> will
-be named <i>Person1</i>.
+This will create a persons array containing two persons.
+<tt>person[0]</tt> will be named <i>Person0</i> and <tt>person[1]</tt>
+will be named <i>Person1</i>.
 
 ### Parameterized factories
 
