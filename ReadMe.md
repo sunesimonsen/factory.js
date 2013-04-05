@@ -55,6 +55,92 @@ which returns a Game instance with the following data:
         { id: 1, name: 'Player 1' },
         { id: 2, name: 'Awesome player' }
     ]
+    
+### Create a new factory
+
+You create a new factory the following way: 
+
+    var personFactory = factory(function () {
+        return new Person({ name: 'Person' + this.sequence() });
+    });
+
+This effectively binds the given function to a factory instance that
+provides support for sequencing. Furthermore the given function is
+decorated with methods for creating multiple instances and reset the
+sequence of the factory.
+
+### Creating an instance using the factory
+
+You create a new instance by calling the factory:
+
+    var person0 = personFactory();
+    var person1 = personFactory();
+
+<tt>person0</tt> will be name <i>Person0</i> and <tt>person1</tt> will
+be name <i>Person1</i>.
+
+### Creating multiple instances using the factory
+
+You can create multiple instances using the create method on the factory:
+
+   var persons = personFactory.create(2);
+
+<tt>person[0]</tt> will be name <i>Person0</i> and <tt>person[1]</tt> will
+be name <i>Person1</i>.
+
+### Parameterized factories
+
+You can parameterize you factory the following way:
+
+    var personFactory = factory(function (name) {
+        name = name || 'Person' + this.sequence();
+        return new Person({ name: name });
+    });
+
+When you call the personFactory with a name it will return a person
+with that name; otherwise it will default to the sequenced name.
+
+    var person0 = personFactory();
+    var person1 = personFactory('foo');
+
+<tt>person0</tt> will be name <i>Person0</i> and <tt>person1</tt> will
+be name <i>Foo</i>.
+
+If you use the <tt>create</tt> method to create multiple instances it
+call the factory method with no parameters.
+
+### Combining factory methods
+
+You are free to combine factory methods as you are pleased. But be
+aware not to create cyclic recursion.
+    
+    var dogFactory = factory(function () {
+        return new Dog({ name: 'Dog' + this.sequence() });
+    });
+
+    var personFactory = factory(function () {
+        return new Person({ 
+            name: 'Person' + this.sequence(), 
+            dog: dogFactory();
+        });
+    });
+    
+Every person you create with the personFactory will have a dog
+instance associated.
+
+    var person0 = personFactory();
+    var person1 = personFactory();
+    
+    assert(person0.name === 'Person0');
+    assert(person0.dog.name === 'Dog0');
+
+    assert(person1.name === 'Person1');
+    assert(person1.dog.name === 'Dog1');
+
+
+## Contributors
+
+Gert Sønderby (@gertsonderby)
 
 ## License
 
