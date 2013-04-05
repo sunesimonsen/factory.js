@@ -1,5 +1,5 @@
 {
-    "name": "test-factory",
+    "name": "factory.js",
     "version": "0.0.2",
     "author": "Sune Sloth Simonsen <sune@we-knowhow.dk>",
     "keywords": [ "factory", "test" ],

@@ -8,7 +8,7 @@ A library for create test-data factories
 
 You can install the Factory.js using npm the following way:
 
-    npm install test-factory
+    npm install factory.js
 
 You can require the Factory.js using require.js the following way:
 
