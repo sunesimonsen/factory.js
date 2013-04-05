@@ -137,6 +137,20 @@ instance associated.
     assert(person1.name === 'Person1');
     assert(person1.dog.name === 'Dog1');
 
+### Resetting the sequence of a factory
+
+You can reset the sequencing of a factory the following way:
+
+    var personFactory = factory(function () {
+        return new Person({ name: 'Person' + this.sequence() });
+    });
+
+    var person0 = personFactory();
+    personFactory.reset();
+    var person1 = personFactory();
+
+<tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt>
+will be named <i>Person0</i>.
 
 ## Contributors
 
