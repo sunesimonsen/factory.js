@@ -76,8 +76,8 @@ You create a new instance by calling the factory:
     var person0 = personFactory();
     var person1 = personFactory();
 
-<tt>person0</tt> will be name <i>Person0</i> and <tt>person1</tt> will
-be name <i>Person1</i>.
+<tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt> will
+be named <i>Person1</i>.
 
 ### Creating multiple instances using the factory
 
@@ -85,8 +85,8 @@ You can create multiple instances using the create method on the factory:
 
    var persons = personFactory.create(2);
 
-<tt>person[0]</tt> will be name <i>Person0</i> and <tt>person[1]</tt> will
-be name <i>Person1</i>.
+<tt>person[0]</tt> will be named <i>Person0</i> and <tt>person[1]</tt> will
+be named <i>Person1</i>.
 
 ### Parameterized factories
 
@@ -103,8 +103,8 @@ with that name; otherwise it will default to the sequenced name.
     var person0 = personFactory();
     var person1 = personFactory('foo');
 
-<tt>person0</tt> will be name <i>Person0</i> and <tt>person1</tt> will
-be name <i>Foo</i>.
+<tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt> will
+be named <i>Foo</i>.
 
 If you use the <tt>create</tt> method to create multiple instances it
 call the factory method with no parameters.
