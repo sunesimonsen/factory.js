@@ -4,6 +4,23 @@ A library for create test-data factories
 
 [![Build Status](https://travis-ci.org/sunesimonsen/factory.js.png?branch=master)](https://travis-ci.org/sunesimonsen/factory.js)
 
+## Install
+
+You can install the Factory.js using npm the following way:
+
+    npm install test-factory
+
+You can require the Factory.js using require.js the following way:
+
+    define('path/to/factory', function (factory) {
+        // define you're module that uses the factory
+    });
+
+If you choose to use the library directly in the browser the factory
+will be installed in the global namespace under the name:
+
+    weknowhow.factory
+
 ## Usage
 
     function Game(data) {
