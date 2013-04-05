@@ -83,7 +83,7 @@ be named <i>Person1</i>.
 
 You can create multiple instances using the create method on the factory:
 
-   var persons = personFactory.create(2);
+    var persons = personFactory.create(2);
 
 <tt>person[0]</tt> will be named <i>Person0</i> and <tt>person[1]</tt> will
 be named <i>Person1</i>.
