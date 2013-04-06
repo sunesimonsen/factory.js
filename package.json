@@ -1,13 +1,13 @@
 {
     "name": "factory.js",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "author": "Sune Sloth Simonsen <sune@we-knowhow.dk>",
     "keywords": [ "factory", "test" ],
     "license": "Apache 2.0",
     "bugs": "https://github.com/sunesimonsen/factory.js/issues",
     "repository": {
         "type": "git",
-        "url": "https://github.com/sunesimonsen/factory.js/issues"
+        "url": "https://github.com/sunesimonsen/factory.js"
     },
     "contributors": [
       "Gert Sønderby github.com/gertsonderby"
