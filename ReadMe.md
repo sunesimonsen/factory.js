@@ -195,7 +195,7 @@ will be named <i>Person0</i>.
 
 ## Contributors
 
-Gert Sønderby (@gertsonderby)
+Gert Sønderby ([@gertsonderby](https://github.com/gertsonderby/))
 
 ## License
 
