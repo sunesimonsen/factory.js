@@ -11,10 +11,11 @@ You can install the Factory.js using npm the following way:
     npm install factory.js
 
 You can require the Factory.js using require.js the following way:
-
-    define('path/to/factory', function (factory) {
-        // define you're module that uses the factory
-    });
+``` js
+define('path/to/factory', function (factory) {
+    // define you're module that uses the factory
+});
+```
 
 If you choose to use the library directly in the browser the factory
 will be installed in the global namespace under the name:
@@ -23,63 +24,71 @@ will be installed in the global namespace under the name:
 
 ## Usage
 
-    function Game(data) {
-        this.id = data.id;
-        this.isOver = data.isOver;
-        this.createAt = data.createAt;
-        this.randomSeed = data.randomSeed;
-        this.players = data.players;
-    }
+``` js
+function Game(data) {
+    this.id = data.id;
+    this.isOver = data.isOver;
+    this.createAt = data.createAt;
+    this.randomSeed = data.randomSeed;
+    this.players = data.players;
+}
 
-    function Player(data) {
-        this.id = data.id;
-        this.name = data.name;
-    }
+function Player(data) {
+    this.id = data.id;
+    this.name = data.name;
+}
 
-    var playerFactory = factory(function (name) {
-        var id = this.sequence();
-        name = name || 'Player ' + id;
-        return new Player({
-            id: id,
-            name: name
-        });
+var playerFactory = factory(function (name) {
+    var id = this.sequence();
+    name = name || 'Player ' + id;
+    return new Player({
+        id: id,
+        name: name
     });
+});
 
-    var gameFactory = factory(function () {
-        var players = playerFactory.create(2);
-        players.push(playerFactory('Awesome player'));
-        return new Game({
-            id: this.sequence(),
-            isOver: false,
-            createAt: new Date(),
-            randomSeed: Math.random(),
-            players: players
-        });
+var gameFactory = factory(function () {
+    var players = playerFactory.create(2);
+    players.push(playerFactory('Awesome player'));
+    return new Game({
+        id: this.sequence(),
+        isOver: false,
+        createAt: new Date(),
+        randomSeed: Math.random(),
+        players: players
     });
+});
+```
 
 You can now build a new game the following way:
 
-    var game = gameFactory();
+``` js
+var game = gameFactory();
+```
 
 which returns a Game instance with the following data:
 
-    id: 0,
-    isOver: true,
-    createdAt: Wed Apr 03 2013 21:56:16 GMT+0200 (CEST),
-    randomSeed: 0.672447538934648,
-    players: [
-        { id: 0, name: 'Player 0' },
-        { id: 1, name: 'Player 1' },
-        { id: 2, name: 'Awesome player' }
-    ]
+``` js
+id: 0,
+isOver: true,
+createdAt: Wed Apr 03 2013 21:56:16 GMT+0200 (CEST),
+randomSeed: 0.672447538934648,
+players: [
+    { id: 0, name: 'Player 0' },
+    { id: 1, name: 'Player 1' },
+    { id: 2, name: 'Awesome player' }
+]
+```
     
 ### Create a new factory
 
 You create a new factory the following way: 
 
-    var personFactory = factory(function () {
-        return new Person({ name: 'Person' + this.sequence() });
-    });
+``` js
+var personFactory = factory(function () {
+    return new Person({ name: 'Person' + this.sequence() });
+});
+```
 
 This effectively binds the given function to a factory instance that
 provides support for sequencing. Furthermore the given function is
@@ -90,8 +99,10 @@ sequence of the factory.
 
 You create a new instance by calling the factory:
 
-    var person0 = personFactory();
-    var person1 = personFactory();
+``` js
+var person0 = personFactory();
+var person1 = personFactory();
+```
 
 <tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt> will
 be named <i>Person1</i>.
@@ -100,7 +111,9 @@ be named <i>Person1</i>.
 
 You can create multiple instances using the create method on the factory:
 
-    var persons = personFactory.create(2);
+``` js
+var persons = personFactory.create(2);
+```
 
 This will create a persons array containing two persons.
 <tt>person[0]</tt> will be named <i>Person0</i> and <tt>person[1]</tt>
@@ -110,16 +123,20 @@ will be named <i>Person1</i>.
 
 You can parameterize you factory the following way:
 
-    var personFactory = factory(function (name) {
-        name = name || 'Person' + this.sequence();
-        return new Person({ name: name });
-    });
+``` js
+var personFactory = factory(function (name) {
+    name = name || 'Person' + this.sequence();
+    return new Person({ name: name });
+});
+```
 
 When you call the personFactory with a name it will return a person
 with that name; otherwise it will default to the sequenced name.
 
-    var person0 = personFactory();
-    var person1 = personFactory('foo');
+``` js
+var person0 = personFactory();
+var person1 = personFactory('foo');
+```
 
 <tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt> will
 be named <i>Foo</i>.
@@ -132,40 +149,46 @@ call the factory method with no parameters.
 You are free to combine factory methods as you are pleased. But be
 aware not to create cyclic recursion.
     
-    var dogFactory = factory(function () {
-        return new Dog({ name: 'Dog' + this.sequence() });
-    });
+``` js
+var dogFactory = factory(function () {
+    return new Dog({ name: 'Dog' + this.sequence() });
+});
 
-    var personFactory = factory(function () {
-        return new Person({ 
-            name: 'Person' + this.sequence(), 
-            dog: dogFactory();
-        });
+var personFactory = factory(function () {
+    return new Person({ 
+        name: 'Person' + this.sequence(), 
+        dog: dogFactory();
     });
+});
+```
     
 Every person you create with the personFactory will have a dog
 instance associated.
 
-    var person0 = personFactory();
-    var person1 = personFactory();
-    
-    assert(person0.name === 'Person0');
-    assert(person0.dog.name === 'Dog0');
+``` js
+var person0 = personFactory();
+var person1 = personFactory();
 
-    assert(person1.name === 'Person1');
-    assert(person1.dog.name === 'Dog1');
+assert(person0.name === 'Person0');
+assert(person0.dog.name === 'Dog0');
+
+assert(person1.name === 'Person1');
+assert(person1.dog.name === 'Dog1');
+```
 
 ### Resetting the sequence of a factory
 
 You can reset the sequencing of a factory the following way:
 
-    var personFactory = factory(function () {
-        return new Person({ name: 'Person' + this.sequence() });
-    });
+``` js
+var personFactory = factory(function () {
+    return new Person({ name: 'Person' + this.sequence() });
+});
 
-    var person0 = personFactory();
-    personFactory.reset();
-    var person1 = personFactory();
+var person0 = personFactory();
+personFactory.reset();
+var person1 = personFactory();
+```
 
 <tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt>
 will be named <i>Person0</i>.
