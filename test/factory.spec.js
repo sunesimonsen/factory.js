@@ -1,5 +1,5 @@
 /*global describe, it*/
-var expect = require('expect.js');
+var expect = require('unexpected');
 var factory = require(__dirname + '/../lib/factory.js');
 
 describe('factory', function () {
@@ -7,24 +7,24 @@ describe('factory', function () {
         var testFactory = factory(function () {
             return 'Test';
         });
-        expect(testFactory()).to.be('Test');
+        expect(testFactory(), 'to be', 'Test');
     });
 
     it('makes available a sequence function to the factories', function () {
         var testFactory = factory(function () {
             return 'Test' + this.sequence();
         });
-        expect(testFactory()).to.be('Test0');
-        expect(testFactory()).to.be('Test1');
+        expect(testFactory(), 'to be', 'Test0');
+        expect(testFactory(), 'to be', 'Test1');
     });
 
     it('can reset the sequence', function () {
         var testFactory = factory(function () {
             return 'Test' + this.sequence();
         });
-        expect(testFactory()).to.be('Test0');
+        expect(testFactory(), 'to be', 'Test0');
         testFactory.reset();
-        expect(testFactory()).to.be('Test0');
+        expect(testFactory(), 'to be', 'Test0');
     });
 
     it('can create multiple instance using the create method', function () {
@@ -32,8 +32,8 @@ describe('factory', function () {
             return 'Test' + this.sequence();
         });
         var items = testFactory.create(2);
-        expect(items[0]).to.be('Test0');
-        expect(items[1]).to.be('Test1');
+        expect(items[0], 'to be', 'Test0');
+        expect(items[1], 'to be', 'Test1');
     });
 
     it('is possible to combine factories', function () {
@@ -51,9 +51,9 @@ describe('factory', function () {
         });
 
         var person = personFactory();
-        expect(person.name).to.be('Test person 0');
-        expect(person.dogs.length).to.be(3);
-        expect(person.dogs[1]).to.eql({
+        expect(person.name, 'to be', 'Test person 0');
+        expect(person.dogs.length, 'to be', 3);
+        expect(person.dogs[1], 'to equal', {
             name: 'Test dog 1'
         });
     });
@@ -95,18 +95,18 @@ describe('factory', function () {
             });
 
             var game = gameFactory();
-            expect(game.id).to.be(0);
-            expect(game.isOver).to.be(false);
-            expect(game.players).to.have.length(3);
-            expect(game.players[0]).to.eql({
+            expect(game.id, 'to be', 0);
+            expect(game.isOver, 'to be', false);
+            expect(game.players, 'to have length', 3);
+            expect(game.players[0], 'to equal', {
                 id: 0,
                 name: 'Player 0'
             });
-            expect(game.players[1]).to.eql({
+            expect(game.players[1], 'to equal', {
                 id: 1,
                 name: 'Player 1'
             });
-            expect(game.players[2]).to.eql({
+            expect(game.players[2], 'to equal', {
                 id: 2,
                 name: 'Awesome player'
             });
