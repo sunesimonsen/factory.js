@@ -1,24 +1,27 @@
 {
-    "name": "factory.js",
-    "version": "0.0.4",
-    "author": "Sune Sloth Simonsen <sune@we-knowhow.dk>",
-    "keywords": [ "factory", "test" ],
-    "license": "Apache 2.0",
-    "bugs": "https://github.com/sunesimonsen/factory.js/issues",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sunesimonsen/factory.js"
-    },
-    "contributors": [
-      "Gert Sønderby github.com/gertsonderby"
-    ],
-    "scripts": {
-        "test": "./node_modules/.bin/mocha"
-    },
-    "main": "./lib/factory.js",
-    "dependencies": {},
-    "devDependencies": {
-        "mocha": "~1.9.0",
-        "unexpected": "=0.0.3"
-    }
+  "name": "factory.js",
+  "version": "0.0.5",
+  "author": "Sune Sloth Simonsen <sune@we-knowhow.dk>",
+  "keywords": [
+    "factory",
+    "test"
+  ],
+  "license": "Apache 2.0",
+  "bugs": "https://github.com/sunesimonsen/factory.js/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunesimonsen/factory.js"
+  },
+  "contributors": [
+    "Gert Sønderby github.com/gertsonderby"
+  ],
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "main": "./lib/factory.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "~1.9.0",
+    "unexpected": "=0.0.3"
+  }
 }
