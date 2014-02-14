@@ -36,6 +36,15 @@ describe('factory', function () {
         expect(items[1], 'to be', 'Test1');
     });
 
+    it('can create multiple instance using the create method with the specified paramenters', function () {
+        var testFactory = factory(function (name) {
+            return { id: 'Test' + this.sequence(), name: name };
+        });
+        var items = testFactory.create(2, 'foobar');
+        expect(items[0], 'to equal', { id: 'Test0', name: 'foobar' });
+        expect(items[1], 'to equal', { id: 'Test1', name: 'foobar' });
+    });
+
     it('is possible to combine factories', function () {
         var dogFactory = factory(function () {
             return {

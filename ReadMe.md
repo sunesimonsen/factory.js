@@ -85,8 +85,8 @@ players: [
 You create a new factory the following way: 
 
 ``` js
-var personFactory = factory(function () {
-    return new Person({ name: 'Person' + this.sequence() });
+var personFactory = factory(function (name) {
+    return new Person({ name: (name || 'Person') + this.sequence() });
 });
 ```
 
@@ -118,6 +118,16 @@ var persons = personFactory.create(2);
 This will create a persons array containing two persons.
 <tt>person[0]</tt> will be named <i>Person0</i> and <tt>person[1]</tt>
 will be named <i>Person1</i>.
+
+All additional arguments to create will be forwarded to the factory method:
+
+``` js
+var persons = personFactory.create(2, 'Human');
+```
+
+This will create a persons array containing two persons.
+<tt>person[0]</tt> will be named <i>Human0</i> and <tt>person[1]</tt>
+will be named <i>Human1</i>.
 
 ### Parameterized factories
 
