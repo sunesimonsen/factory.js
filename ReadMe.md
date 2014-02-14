@@ -104,7 +104,7 @@ var person0 = personFactory();
 var person1 = personFactory();
 ```
 
-<tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt> will
+`person0` will be named <i>Person0</i> and `person1` will
 be named <i>Person1</i>.
 
 ### Creating multiple instances using the factory
@@ -116,7 +116,7 @@ var persons = personFactory.create(2);
 ```
 
 This will create a persons array containing two persons.
-<tt>person[0]</tt> will be named <i>Person0</i> and <tt>person[1]</tt>
+`person[0]` will be named <i>Person0</i> and `person[1]`
 will be named <i>Person1</i>.
 
 All additional arguments to create will be forwarded to the factory method:
@@ -126,7 +126,7 @@ var persons = personFactory.create(2, 'Human');
 ```
 
 This will create a persons array containing two persons.
-<tt>person[0]</tt> will be named <i>Human0</i> and <tt>person[1]</tt>
+`person[0]` will be named <i>Human0</i> and `person[1]`
 will be named <i>Human1</i>.
 
 ### Parameterized factories
@@ -148,10 +148,10 @@ var person0 = personFactory();
 var person1 = personFactory('foo');
 ```
 
-<tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt> will
+`person0` will be named <i>Person0</i> and `person1` will
 be named <i>Foo</i>.
 
-If you use the <tt>create</tt> method to create multiple instances it
+If you use the `create` method to create multiple instances it
 call the factory method with no parameters.
 
 ### Combining factory methods
@@ -200,7 +200,7 @@ personFactory.reset();
 var person1 = personFactory();
 ```
 
-<tt>person0</tt> will be named <i>Person0</i> and <tt>person1</tt>
+`person0` will be named <i>Person0</i> and `person1`
 will be named <i>Person0</i>.
 
 ## Contributors
